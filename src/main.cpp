@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <bit>
+#include <cstddef>
 
 using namespace core;
 using namespace core::machine;
@@ -42,5 +43,20 @@ std::string getCompilerStr() {
 int main() {
     std::cout << "Compiler: " << getCompilerStr() << " " << core::getCompilerVersion() << std::endl;
     std::cout << "Machine: " << getArchitectureStr() << ", " << getEndianStr() <<  "-endian" << std::endl;
+
+    std::cout << "Types:\n";
+    std::cout << "  int - " << sizeof(int) << " bytes\n";
+    std::cout << "  ptr - " << sizeof(std::nullptr_t) << " bytes\n";
+    std::cout << std::endl;
+    std::cout << "  char - " << sizeof(char) << " bytes\n";
+    std::cout << "  short - " << sizeof(short) << " bytes\n";
+    std::cout << "  long - " << sizeof(long) << " bytes\n";
+    std::cout << "  long long - " << sizeof(long long) << " bytes\n";
+    std::cout << std::endl;
+    std::cout << "  float - " << sizeof(float) << " bytes\n";
+    std::cout << "  double - " << sizeof(double) << " bytes\n";
+    std::cout << "  long double - " << sizeof(long double) << " bytes\n";
+    std::cout << "  bool - " << sizeof(bool) << " bytes\n";
+
     return 0;
 }
