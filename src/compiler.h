@@ -3,6 +3,15 @@
 #include <string>
 
 namespace core {
-    std::string getCompilerName();
-    std::string getCompilerVersion();
+
+enum class Compiler {
+    gcc,
+    clang,
+    msvc,
+    unknown
+};
+
+Compiler getCompiler();
+std::string getCompilerVersion();
+
 }

@@ -1,9 +1,14 @@
 #pragma once
 
-#include <string>
+namespace core::machine {
 
-namespace core {
+enum class Architecture {
+    arm,
+    x86_32,
+    x86_64,
+    unknown
+};
 
-std::string getMachineArchitectureName();
+Architecture getArchitecture();
 
 }

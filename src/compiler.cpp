@@ -3,34 +3,38 @@
 
 namespace core {
 
-std::string getCompilerName() {
+Compiler getCompiler() {
 #if BOOST_COMP_CLANG
-    return "clang";
+    return Compiler::clang;
 #elif BOOST_COMP_GNUC
-    return "gcc";
+    return Compiler::gcc;
 #elif BOOST_COMP_MSVC
-    return "msvs";
+    return Compiler::msvc;
 #else
-    return "unknown"
+    return Compiler::unknown;
 #endif
 }
 
 std::string getCompilerVersion() {
+    int major = 0;
+    int minor = 0;
+    int patch = 0;
+
 #if BOOST_COMP_CLANG
-    return std::to_string(BOOST_VERSION_NUMBER_MAJOR(BOOST_COMP_CLANG)) + "." +
-        std::to_string(BOOST_VERSION_NUMBER_MINOR(BOOST_COMP_CLANG)) + "." +
-        std::to_string(BOOST_VERSION_NUMBER_PATCH(BOOST_COMP_CLANG));
+    major = BOOST_VERSION_NUMBER_MAJOR(BOOST_COMP_CLANG);
+    minor = BOOST_VERSION_NUMBER_MINOR(BOOST_COMP_CLANG);
+    patch = BOOST_VERSION_NUMBER_PATCH(BOOST_COMP_CLANG);
 #elif BOOST_COMP_GNUC
-    return std::to_string(BOOST_VERSION_NUMBER_MAJOR(BOOST_COMP_GNUC)) + "." +
-        std::to_string(BOOST_VERSION_NUMBER_MINOR(BOOST_COMP_GNUC)) + "." +
-        std::to_string(BOOST_VERSION_NUMBER_PATCH(BOOST_COMP_GNUC));
+    major = BOOST_VERSION_NUMBER_MAJOR(BOOST_COMP_GNUC);
+    minor = BOOST_VERSION_NUMBER_MINOR(BOOST_COMP_GNUC);
+    patch = BOOST_VERSION_NUMBER_PATCH(BOOST_COMP_GNUC);
 #elif BOOST_COMP_MSVC
-    return std::to_string(BOOST_VERSION_NUMBER_MAJOR(BOOST_COMP_MSVC)) + "." +
-        std::to_string(BOOST_VERSION_NUMBER_MINOR(BOOST_COMP_MSVC)) + "." +
-        std::to_string(BOOST_VERSION_NUMBER_PATCH(BOOST_COMP_MSVC));
-#else
-    return "unknown"
+    major = BOOST_VERSION_NUMBER_MAJOR(BOOST_COMP_MSVC);
+    minor = BOOST_VERSION_NUMBER_MINOR(BOOST_COMP_MSVC);
+    patch = BOOST_VERSION_NUMBER_PATCH(BOOST_COMP_MSVC);           
 #endif
+
+    return std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
 }
 
 }
